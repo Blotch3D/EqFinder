@@ -125,6 +125,7 @@ public:
 	__int64  NextEquation(void);
 	__int64  GoodEquation(void);
 	void ShowParameters(void);
+	void InitConstants();
 };
 
 void Fclose(FILE **FilePtr);
@@ -235,8 +236,13 @@ void main(int ArgC,char **ArgV)
 
 //	Print("\n\nEquation Finder\n(screen output also goes to eq.txt)\n");
 
-	EqFinder *e[16];
+	auto s = new EqFinder();
+	s->InitConstants();
+	puts("PARAMETERS:\n");
+	s->ShowParameters();
+	puts("\n\nResults:");
 
+	EqFinder* e[16];
 	for(int n=0;n<16;n++)
 	{
 		e[n]=new EqFinder();
@@ -268,31 +274,35 @@ DWORD WINAPI EqFinderThreadProc(void *Context)
 	return 0;
 }
 
-
-void EqFinder::Init(double StartFraction,double StopFraction)
+void EqFinder::InitConstants()
 {
-	Status=0;
-	Constant[0]=NULL;
-	NumConstants=0;
-	ResultMag=-1.;
-	ResultStat=NOTAVAIL;
+	Status = 0;
+	Constant[0] = NULL;
+	NumConstants = 0;
+	ResultMag = -1.;
+	ResultStat = NOTAVAIL;
 
-	MinExponent=-6;
-	MaxExponent=6;
+	MinExponent = -6;
+	MaxExponent = 6;
 
 	// Criteria for considering the equation a 'hit'
-	Range=100.;
-	AnyRange=0;
+	Range = 100.;
+	AnyRange = 0;
 
 	/* How often to print the "." and check for kbhit while thinking */
-	PetRate=2000000;
+	PetRate = 2000000;
 
 	// number of equations to try
-	NumEquations=0;
+	NumEquations = 0;
 
 	// Load the constants.txt file, and also point elements of the Constant array
 	// to each of them.
 	LoadConstants();
+
+}
+void EqFinder::Init(double StartFraction,double StopFraction)
+{
+	InitConstants();
 
 	ExpRange=MaxExponent*2+1;
 
@@ -308,7 +318,7 @@ void EqFinder::Init(double StartFraction,double StopFraction)
 
 void EqFinder::Run(void)
 {
-	Print("Thread %8.8X started\n",GetCurrentThreadId());
+	//Print("Thread %8.8X started\n",GetCurrentThreadId());
 
 	// Search equations and print any hits
 	while(FindEquation())
@@ -333,7 +343,7 @@ void EqFinder::ShowParameters(void)
 	Print("MaxExponent=%d\n",MaxExponent);
 	Print("MagnitudeDeviation=%f\n",Range);
 	Print("\n");
-	Print("SYM MAGNITUDE     M  Kg S  A DESCRIPTION:\n");
+	Print("SYM MAGNITUDE    M  Kg S  A DESCRIPTION:\n");
 
 	for(n=0;n<NumConstants;n++)
 	{
@@ -473,14 +483,16 @@ void EqFinder::DisplayEquation(void)
 
 	for(n=0;n<NumConstants;n++)
 	{
-		sprintf(s+strlen(s),"%3d ",Exponent[n]);
+		if(Exponent[n])
+			sprintf(s+strlen(s),"%3d ",Exponent[n]);
 	}
 
 	sprintf(s+strlen(s),"\n");
 
 	for(n=0;n<NumConstants;n++)
 	{
-		sprintf(s+strlen(s),"%3.3s ",Constant[n]->Symbol);
+		if (Exponent[n])
+			sprintf(s+strlen(s),"%3.3s ",Constant[n]->Symbol);
 	}
 
 	if(ResultStat != NOTAVAIL)

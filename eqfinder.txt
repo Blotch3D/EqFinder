@@ -61,11 +61,11 @@
 ; Edit the below lines as desired:
 
 ; For each vector, try exponents between -MaxExponent and +MaxExponent
-MaxExponent=3
+MaxExponent=4
 
 
 ; Show only equations whose result is within this ratio of 1.
-MagnitudeDeviation=1.001
+MagnitudeDeviation=1.1
 
 
 ; Here are the vectors (constants) to try in the equation
@@ -84,12 +84,12 @@ a	7.2973525698e-3		0	0	0	0	Fine structure constant
 c	2.9979250e8		1	0	-1	0	Speed of light
 G	6.6732e-11		3	-1	-2	0	Gravitational constant
 Mpl	2.2e-8			0	1	0	0	Planck mass
-Lpl	1.6e-35			1	0	0	0	Planck length
+Lpl	1.616255e-35			1	0	0	0	Planck length
 2	2			0	0	0	0	The number 2
 3	3			0	0	0	0	The number 3
 e	2.718281		0	0	0	0	The natural base
 pi	3.1415926536		0	0	0	0	The number PI
-
+Ru  4.39e26		1	0	0	0	Radius of universe
 
 ; You can comment-out constants you don't want used:
 ;Me	9.10956e-31		0	1	0	0	Mass of an electron
