@@ -5,7 +5,7 @@ Written in 1989.
 Ported to C++ in 1994.
 Multithreading added in 1998.
 
-This program takes a list of constants you specify in this config file
+This program takes a list of constants you specify in the config file (eqfinder.txt)
 and finds any valid equations relating those constants.
 
 The units (dimensions) of each constant (meters, kilograms, amperes,
@@ -37,7 +37,7 @@ p^-2  *  u^-1  *  c^-2    =   unitless magnitude?
 p^-2  *  u^-1  *  c^-1    =   unitless magnitude?
  --etc--
 
-Within a few milliseconds the program will discover Maxwells solution for the
+For example if given the permitivity and permeability of free space, within a few milliseconds the program will discover Maxwells solution for the
 speed of light:
 
 p^-1  *  u^-1  *  c^2    ==   1.000 (no units)
