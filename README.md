@@ -46,7 +46,7 @@ p^-2  *  u^-1  *  c^-1    =   unitless magnitude?
 
  --etc--
 
-For example if given the permitivity and permeability of free space, within a few milliseconds the program will discover Maxwells solution for the
+For example if given the permitivity and permeability of free space, within a few milliseconds the program will discover Maxwell's solution for the
 speed of light:
 
 p^-1  *  u^-1  *  c^2    ==   1.000 (no units)
