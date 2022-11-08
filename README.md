@@ -51,5 +51,4 @@ speed of light:
 
 p^-1  *  u^-1  *  c^2    ==   1.000 (no units)
 
-.. and display it for the user.
-
+...but it has no proof, of course!
