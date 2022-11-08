@@ -20,7 +20,9 @@ The program tries equations of the form:
 K1^E1  *  K2^E2  *  K3^E3 = unitless magnitude?
 
 Where
+
 Kn    is a constant
+
 En    is an integral exponent.
 
 For example, if you give the program the permittivity (p) and
@@ -29,12 +31,19 @@ you specify that exponents should be tried from -2 to 2,
 then the program will test the following equations for validity:
 
 p^-2  *  u^-2  *  c^-2    =   unitless magnitude?
+
 p^-2  *  u^-2  *  c^-1    =   unitless magnitude?
+
 p^-2  *  u^-2  *  c^0     =   unitless magnitude?
+
 p^-2  *  u^-2  *  c^1     =   unitless magnitude?
+
 p^-2  *  u^-2  *  c^2     =   unitless magnitude?
+
 p^-2  *  u^-1  *  c^-2    =   unitless magnitude?
+
 p^-2  *  u^-1  *  c^-1    =   unitless magnitude?
+
  --etc--
 
 For example if given the permitivity and permeability of free space, within a few milliseconds the program will discover Maxwells solution for the
