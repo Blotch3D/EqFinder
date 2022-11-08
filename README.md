@@ -1,6 +1,7 @@
 # EqFinder
 Finds equations given a list of dimensioned constants
 
+Written in 1989
 Ported to C++ in 1994.
 Multithreading added in 1998.
 
