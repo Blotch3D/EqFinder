@@ -1,0 +1,105 @@
+;
+;           EQUATION FINDER   (eqfinder.exe)
+;
+; eqfinder is Copyright (c) 1989 by Kelly Loum. All Rights Reserved. You may
+; redistribute and use this program and its documentation without charge as long
+; as they remain unchanged and you inform everyone that you distribute it to
+; of these terms and that this software is free. This software is untested and is
+; available "as is" without warranty of any kind.
+;
+; Ported to C++ in 1994.
+; Multithreading added in 1998.
+;
+; This program takes a list of constants you specify in this config file
+; and finds any valid equations relating those constants.
+;
+; The units (dimensions) of each constant (meters, kilograms, amperes,
+; seconds) are honored when testing equations for validity.
+;
+; That is, the program will try many possible equations containing the
+; constants you specify, but display only those equations in
+; which the units of the constants all cancel.
+;
+; The program tries equations of the form:
+;
+; K1^E1  *  K2^E2  *  K3^E3 = unitless magnitude?
+;
+; Where
+; Kn    is a constant
+; En    is an integral exponent.
+;
+; For example, if you give the program the permittivity (p) and
+; permeability (u) of free space, and the speed of light (c), and
+; you specify that exponents should be tried from -2 to 2,
+; then the program will test the following equations for validity:
+;
+; p^-2  *  u^-2  *  c^-2    =   unitless magnitude?
+; p^-2  *  u^-2  *  c^-1    =   unitless magnitude?
+; p^-2  *  u^-2  *  c^0     =   unitless magnitude?
+; p^-2  *  u^-2  *  c^1     =   unitless magnitude?
+; p^-2  *  u^-2  *  c^2     =   unitless magnitude?
+; p^-2  *  u^-1  *  c^-2    =   unitless magnitude?
+; p^-2  *  u^-1  *  c^-1    =   unitless magnitude?
+;  --etc--
+;
+; Within a few milliseconds the program will discover Maxwells solution for the
+; speed of light:
+;
+; p^-1  *  u^-1  *  c^2    ==   1.000 (no units)
+;
+; .. and display it for the user.
+;
+; see below for descriptions of each possible parameter that can be specified in
+; this config file.
+;
+;
+;----------------------------------------------------------
+;
+; The program reads this file to obtain the MaxExponent, MagnitudeDeviation, and
+; constant vectors.
+;
+; Edit the below lines as desired:
+
+; For each vector, try exponents between -MaxExponent and +MaxExponent
+MaxExponent=3
+
+
+; Show only equations whose result is within this ratio of 1.
+MagnitudeDeviation=1.001
+
+
+; Here are the vectors (constants) to try in the equation
+; (columns are separated by any number of whitespace characters)
+; You can specify as many constants as you want, and use any sumbol you want
+; for a constant.
+
+;SYM	Magnitude		M	Kg	sec	amps  description
+
+P	8.854185e-12		-3	-1	4	2	Permittivity of free space
+u	1.256637e-6		1	1	-2	-2	Permeability of free space
+h	6.626196e-34		2	1	-1	0	Planck's constant
+e-	1.60217733e-19		0	0	-1	1	Elementary charge
+Tu	4.5e17			0	0	1	0	Age of the universe
+a	7.2973525698e-3		0	0	0	0	Fine structure constant
+c	2.9979250e8		1	0	-1	0	Speed of light
+G	6.6732e-11		3	-1	-2	0	Gravitational constant
+Mpl	2.2e-8			0	1	0	0	Planck mass
+Lpl	1.6e-35			1	0	0	0	Planck length
+2	2			0	0	0	0	The number 2
+3	3			0	0	0	0	The number 3
+e	2.718281		0	0	0	0	The natural base
+pi	3.1415926536		0	0	0	0	The number PI
+
+
+; You can comment-out constants you don't want used:
+;Me	9.10956e-31		0	1	0	0	Mass of an electron
+;H0	2.45e-18		0	0	-1	0	Hubble constant
+;Mp	1.67261e-27		0	1	0	0	Mass of a proton7
+;Mn	1.67492e-27		0	1	0	0	Mass of a neutron
+;e_p	23.14069		0	0	0	0	e raised to the pi power (Gelfond's constant) 
+;4	4			0	0	0	0	The number 4
+;5	5			0	0	0	0	The number 5
+
+
+
+
