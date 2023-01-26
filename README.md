@@ -21,7 +21,7 @@ K1^E1  *  K2^E2  *  K3^E3 = unitless magnitude?
 
 Where
 
-Kn    is a constant
+Kn    is a dimensioned constant
 
 En    is an integral exponent.
 
@@ -46,7 +46,7 @@ p^-2  *  u^-1  *  c^-1    =   unitless magnitude?
 
  --etc--
 
-Then Within a few milliseconds the program will discover Maxwell's solution for the
+Then within a few milliseconds the program will discover Maxwell's solution for the
 speed of light:
 
 p^-1  *  u^-1  *  c^2    =   1.000 (no units)
